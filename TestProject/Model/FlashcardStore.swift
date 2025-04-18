@@ -39,8 +39,13 @@ class FlashcardStore: ObservableObject {
         saveContext()
     }
     
+    func deleteFlashcard(_ flashcard: Flashcard) {
+        context.delete(flashcard)
+        fetchFlashcards()
+        saveContext()
+    }
+    
     private func saveContext() {
         PersistenceController.shared.saveContext()
     }
-    
 }
