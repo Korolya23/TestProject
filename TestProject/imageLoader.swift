@@ -22,4 +22,16 @@ class ImageLoader {
         self.semaphore = DispatchSemaphore(value: maxConcurrentTasks)
     }
     
+    func loadImage(from data: Data, completion: @escaping (UIImage?) -> Void) {
+        proccessingQueue.async { [weak self] in
+            self?.semaphore.wait()
+            
+            let image = UIImage(data: data)
+            
+            self?.semaphore.signal()
+            DispatchQueue.main.async {
+                completion(image)
+            }
+        }
+    }
 }
