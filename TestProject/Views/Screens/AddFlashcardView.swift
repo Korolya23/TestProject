@@ -57,6 +57,9 @@ struct AddFlashcardView: View {
                     }
                 }
             }
+            .sheet(isPresented: $showingImagePicker) {
+                ImagePickerView(image: $image)
+            }
         }
     }
 }
