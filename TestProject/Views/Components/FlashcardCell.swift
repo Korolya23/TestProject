@@ -26,6 +26,7 @@ struct FlashcardCell: View {
                     .clipped()
             } else {
                 placeholderView
+                    .overlay(ShimmerEffectView())
             }
             
             Text(flashcard.wrappedWord)
