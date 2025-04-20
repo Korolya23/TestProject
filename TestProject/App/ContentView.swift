@@ -22,7 +22,11 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             Group {
-                emptyStateView
+                if store.flashcards.isEmpty {
+                    emptyStateView
+                } else {
+                    flashcardGridView
+                }
             }
             .navigationTitle("Флеш-карточки")
             .toolbar {
@@ -39,17 +43,32 @@ struct ContentView: View {
             AddFlashcardView(store: store)
         }
     }
-}
-
-private var emptyStateView: some View {
-    VStack {
-        Image(systemName: "photo.on.rectangle.angled")
-            .font(.system(size: 50))
-        
-        Text("Добавьте первую карточку")
-            .font(.title2)
+    
+    private var emptyStateView: some View {
+        VStack {
+            Image(systemName: "photo.on.rectangle.angled")
+                .font(.system(size: 50))
+            
+            Text("Добавьте первую карточку")
+                .font(.title2)
+        }
+        .foregroundColor(.gray)
     }
-    .foregroundColor(.gray)
+    
+    private var flashcardGridView: some View {
+        ScrollView {
+            LazyVGrid(columns: gridColumns, spacing: 16) {
+                ForEach(store.flashcards) { flashcard in
+                    FlashcardCell(flashcard: flashcard) {
+                        selectedCard = flashcard
+                    } deleteAction: {
+                        store.deleteFlashcard(flashcard)
+                    }
+                }
+            }
+            .padding()
+        }
+    }
 }
 
 

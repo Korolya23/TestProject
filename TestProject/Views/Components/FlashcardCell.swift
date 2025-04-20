@@ -17,8 +17,8 @@ struct FlashcardCell: View {
     
     var body: some View {
         ZStack(alignment: .bottom) {
-            if let image = flashcard.getImage() {
-                Image(uiImage: displayedImage ?? UIImage(systemName: "photo")!)
+            if let image = displayedImage ?? flashcard.getImage() {
+                Image(uiImage: image)
                     .resizable()
                     .scaledToFill()
                     .frame(width: 300, height: 300)
