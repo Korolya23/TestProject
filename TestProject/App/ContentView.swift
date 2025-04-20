@@ -38,9 +38,12 @@ struct ContentView: View {
                     }
                 }
             }
-        }
-        .sheet(isPresented: $showingAddView) {
-            AddFlashcardView(store: store)
+            .sheet(isPresented: $showingAddView) {
+                AddFlashcardView(store: store)
+            }
+            .sheet(item: $selectedCard) { card in
+                FlashcardDetailView(card: card)
+            }
         }
     }
     
