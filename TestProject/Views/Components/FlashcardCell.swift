@@ -45,7 +45,7 @@ struct FlashcardCell: View {
         }
         .contextMenu {
             Button(role: .destructive) {
-                withAnimation {
+                withAnimation(.easeInOut(duration: 0.5)){
                     deleteAction()
                 }
             } label: {
