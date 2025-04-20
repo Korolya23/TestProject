@@ -21,8 +21,8 @@ struct FlashcardCell: View {
                 Image(uiImage: image)
                     .resizable()
                     .scaledToFill()
-                    .frame(width: 300, height: 300)
-                    .cornerRadius(20)
+                    .frame(width: 110, height: 150)
+                    .cornerRadius(10)
                     .clipped()
             } else {
                 placeholderView
