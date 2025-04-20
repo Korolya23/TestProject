@@ -45,7 +45,9 @@ struct FlashcardCell: View {
         }
         .contextMenu {
             Button(role: .destructive) {
-                deleteAction()
+                withAnimation {
+                    deleteAction()
+                }
             } label: {
                 Label("Удалить", systemImage: "trash")
             }
