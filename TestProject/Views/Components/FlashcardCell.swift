@@ -63,4 +63,15 @@ struct FlashcardCell: View {
                 .foregroundColor(.gray)
         }
     }
+    
+    private func loadImageIfNeeded() {
+        guard displayedImage == nil,
+              let imageData = flashcard.imageData else { return }
+        
+        imageLoader.loadImage(from: imageData) { image in
+            DispatchQueue.main.async {
+                self.displayedImage = image
+            }
+        }
+    }
 }
