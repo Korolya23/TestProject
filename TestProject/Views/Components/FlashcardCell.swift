@@ -27,6 +27,27 @@ struct FlashcardCell: View {
             } else {
                 placeholderView
             }
+            
+            Text(flashcard.wrappedWord)
+                .font(.headline)
+                .foregroundColor(.white)
+                .padding(8)
+                .frame(maxWidth: .infinity)
+                .background(Color.black.opacity(0.5))
+                .cornerRadius(10)
+        }
+        .frame(width: 110, height: 150)
+        .clipShape(RoundedRectangle(cornerRadius: 10))
+        .contentShape(RoundedRectangle(cornerRadius: 10))
+        .onTapGesture {
+            action()
+        }
+        .contextMenu {
+            Button(role: .destructive) {
+                deleteAction()
+            } label: {
+                Label("Удалить", systemImage: "trash")
+            }
         }
     }
     
