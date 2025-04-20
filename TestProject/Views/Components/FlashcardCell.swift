@@ -50,6 +50,9 @@ struct FlashcardCell: View {
                 Label("Удалить", systemImage: "trash")
             }
         }
+        .onAppear {
+            loadImageIfNeeded()
+        }
     }
     
     private var placeholderView: some View {
